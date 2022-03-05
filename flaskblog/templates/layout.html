@@ -59,18 +59,37 @@
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
+            {% if current_user.is_authenticated %}
           <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
+            <h4>User Account Info</h4>
               <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
+                <li class="list-group-item list-group-item-light">Username: {{ username }}</li>
+                  <li class="list-group-item list-group-item-light">Email: {{ useremail }}</li>
+                <li class="list-group-item list-group-item-light">Total Posts: {{ usrpostcount }}</li>
+                <li class="list-group-item list-group-item-light">Total Comments: {{ usrcommentcount }}</li>
               </ul>
-            </p>
           </div>
-        </div>
+             <div class="content-section">
+            <h4>System Wide Info</h4>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Total Posts: {{ syspostcount }}</li>
+                <li class="list-group-item list-group-item-light">Total Comments: {{ syscommentcount }}</li>
+                <li class="list-group-item list-group-item-light">Total Users: {{ sysusercount }}</li>
+              </ul>
+            </div>
+            {% else %}
+             <div class="content-section">
+            <h5>Not Currently Logged In</h5>
+            </div>
+             <div class="content-section">
+            <h4>System Wide Info</h4>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Total Posts: {{ syspostcount }}</li>
+                <li class="list-group-item list-group-item-light">Total Comments: {{ syscommentcount }}</li>
+                <li class="list-group-item list-group-item-light">Total Users: {{ sysusercount }}</li>
+              </ul>
+            </div>
+            {% endif %}
       </div>
     </main>
 
