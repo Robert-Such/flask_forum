@@ -20,30 +20,20 @@ def static_info():
         usrcommentcount = Comment.query.filter_by(user_id=current_user.id).count()
 
         return dict(syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount,
-                usrpostcount=usrpostcount, usrcommentcount=usrcommentcount, username=username,
-                useremail=useremail, date_created=date_created)
+                    usrpostcount=usrpostcount, usrcommentcount=usrcommentcount, username=username,
+                    useremail=useremail, date_created=date_created)
     else:
         return dict(syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount)
 
+
 @app.template_filter('humanize')
 def humanize_ts(time=False):
-    """
-    Get a datetime object or a int() Epoch timestamp and return a
-    pretty string like 'an hour ago', 'Yesterday', '3 months ago',
-    'just now', etc
-    """
     now = datetime.utcnow()
-    print(now)
-    print(time)
     diff = now - time
-    print(diff)
     second_diff = diff.seconds
     day_diff = diff.days
-    print(day_diff)
-
     if day_diff < 0:
         return ''
-
     if day_diff == 0:
         if second_diff < 10:
             return "just now"
@@ -68,8 +58,5 @@ def humanize_ts(time=False):
     return str(int(day_diff / 365)) + " years ago"
 
 
-
 if __name__ == '__main__':
     app.run(debug=True)
-
-
