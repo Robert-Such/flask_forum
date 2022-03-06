@@ -14,12 +14,13 @@ def static_info():
     if current_user.is_authenticated:
         username = current_user.username
         useremail = current_user.email
+        date_created = current_user.date_created.date()
         usrpostcount = Post.query.filter_by(user_id=current_user.id).count()
         usrcommentcount = Comment.query.filter_by(user_id=current_user.id).count()
 
         return dict(syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount,
                 usrpostcount=usrpostcount, usrcommentcount=usrcommentcount, username=username,
-                useremail=useremail)
+                useremail=useremail, date_created=date_created)
     else:
         return dict(syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount)
 
