@@ -67,7 +67,7 @@
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-light">Username: {{ username }}</li>
                     <li class="list-group-item list-group-item-light">Email: {{ useremail }}</li>
-                    <li class="list-group-item list-group-item-light">Account Created: {{ date_created }}</li>
+                    <li class="list-group-item list-group-item-light">Account Created: {{ date_created | humanize}}</li>
                     <li class="list-group-item list-group-item-light">Total Posts: {{ usrpostcount }}</li>
                     <li class="list-group-item list-group-item-light">Total Comments: {{ usrcommentcount }}</li>
                 </ul>

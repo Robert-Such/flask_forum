@@ -15,7 +15,7 @@ def static_info():
     if current_user.is_authenticated:
         username = current_user.username
         useremail = current_user.email
-        date_created = current_user.date_created.date()
+        date_created = current_user.date_created
         usrpostcount = Post.query.filter_by(user_id=current_user.id).count()
         usrcommentcount = Comment.query.filter_by(user_id=current_user.id).count()
 
