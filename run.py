@@ -19,9 +19,9 @@ def static_info():
         usrpostcount = Post.query.filter_by(user_id=current_user.id).count()
         usrcommentcount = Comment.query.filter_by(user_id=current_user.id).count()
 
-        return dict(syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount,
-                    usrpostcount=usrpostcount, usrcommentcount=usrcommentcount, username=username,
-                    useremail=useremail, date_created=date_created)
+        return dict(syspostcount=syspostcount, syscommentcount=syscommentcount,
+                    sysusercount=sysusercount, usrpostcount=usrpostcount, usrcommentcount=usrcommentcount,
+                    username=username, useremail=useremail, date_created=date_created)
     else:
         return dict(syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount)
 

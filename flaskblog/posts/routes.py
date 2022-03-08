@@ -26,6 +26,12 @@ def post(post_id):
     page = request.args.get('page', 1, type=int)
     post = Post.query.get_or_404(post_id)
     comments = Comment.query.filter_by(post_id=post.id).order_by(Comment.date_posted.desc()).paginate(page=page, per_page=5)
+    if not post.view_count:
+        post.view_count = 1
+        db.session.commit()
+    else:
+        post.view_count += 1
+    db.session.commit()
     return render_template('post.html', title=post.title, post=post, comments=comments)
 
 
