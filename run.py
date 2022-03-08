@@ -57,6 +57,12 @@ def humanize_ts(time=False):
         return str(int(day_diff / 30)) + " months ago"
     return str(int(day_diff / 365)) + " years ago"
 
+@app.template_filter('replycount')
+def replycount_ts(post_id):
+    post = Post.query.get_or_404(post_id)
+    replycount = Comment.query.filter_by(post_id=post.id).count()
+    return replycount
+
 
 if __name__ == '__main__':
     app.run(debug=True)
