@@ -1,0 +1,8 @@
+to start from scratch and create all tables then go into PYTHON CONSOLE! and enter the following:
+
+
+>>> from flaskblog import create_app
+>>> app = create_app()
+>>> app.app_context().push()
+>>> from flaskblog import db
+>>> db.create_all()
