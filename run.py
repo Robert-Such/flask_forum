@@ -1,6 +1,6 @@
 from datetime import datetime
-from flaskblog import create_app
-from flaskblog.models import Post, Comment, User
+from flaskforum import create_app
+from flaskforum.models import Post, Comment, User
 from flask_login import current_user
 
 app = create_app()
