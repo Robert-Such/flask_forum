@@ -9,13 +9,17 @@
         <div class="article-metadata">
             <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{
                 post.author.username }}</a>
-            <small class="text-muted">| {{ post.date_posted | humanize }}</small>
-            <small class="text-muted">| POST ID: {{ post.id}}</small>
-            <small class="text-muted">| VIEW COUNT: {{ post.view_count}}</small>
-            <small class="text-muted">| REPLY COUNT: {{ post.id | replycount}}</small>
+            <small class="text-muted">{{ post.date_posted | humanize }}</small>
+
         </div>
         <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
         <p class="article-content">{{ post.content }}</p>
+        <div class="article-metadata"></div>
+        <small class="text-muted">Post ID: {{ post.id}}</small>
+        <small class="text-muted">| {{ post.view_count}} views</small>
+        <small class="text-muted">| {{ post.id | replycount }} replies (last {{post.id | lastcomment |
+            humanize}})</small>
+        <small class="text-muted">| Topic: {{ post.topic }}</small>
     </div>
 </article>
 {% endfor %}

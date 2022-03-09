@@ -7,17 +7,20 @@
         <div class="article-metadata">
             <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{
                 post.author.username }}</a>
-            <small class="text-muted">| {{ post.date_posted | humanize }}</small>
-            <small class="text-muted">| POST ID: {{ post.id}}</small>
-            <small class="text-muted">| VIEW COUNT: {{ post.view_count}}</small>
-            <small class="text-muted">| REPLY COUNT: {{ post.id | replycount}}</small>
+            <small class="text-muted"> {{ post.date_posted | humanize }}</small>
         </div>
         <h2 class="article-title">{{ post.title }}</h2>
         <p class="article-content">{{ post.content }}</p>
+        <div class="article-metadata"></div>
+        <small class="text-muted">Post ID: {{ post.id}}</small>
+        <small class="text-muted">| {{ post.view_count}} views</small>
+        <small class="text-muted">| {{ post.id | replycount }} replies (last {{post.id | lastcomment |
+            humanize}})</small>
+        <small class="text-muted">| Topic: {{ post.topic }}</small>
         {% if post.author == current_user %}
         <div>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
-            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">
+            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal_post">
                 Delete
             </button>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('comments.new_comment', post_id=post.id) }}">Comment</a>
@@ -37,10 +40,11 @@
         <div class="article-metadata">
             <a class="mr-2" href="{{ url_for('users.user_comments', username=comment.author.username) }}">{{
                 comment.author.username }}</a>
-            <small class="text-muted">| {{ comment.date_posted | humanize }}</small>
-            <small class="text-muted">| COMMENT ID: {{ comment.id }}</small>
+            <small class="text-muted">{{ comment.date_posted | humanize }}</small>
         </div>
-        <p class="article-content">{{ comment.content }} </p>
+        <p class="article-content">  {{ comment.content }} </p>
+        <div class="article-metadata"></div>
+        <a class="mr-3" href="{{ url_for('comments.comment', post_id=post.id, comment_id=comment.id) }}">Comment ID: {{ comment.id }}</a>
     </div>
 </article>
 {% endfor %}
@@ -56,12 +60,12 @@
 {% endif %}
 {% endfor %}
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+<div class="modal fade" id="deleteModal_post" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel_post"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+                <h5 class="modal-title" id="deleteModalLabel_post">Delete Post?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -75,4 +79,6 @@
         </div>
     </div>
 </div>
+
+
 {% endblock content %}

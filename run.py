@@ -11,6 +11,8 @@ def static_info():
     syspostcount = Post.query.count()
     syscommentcount = Comment.query.count()
     sysusercount = User.query.count()
+    systopiccount = Post.query.with_entities(Post.topic).distinct().count()-1  # subtracting (1) for where topic=None
+    now = datetime.utcnow()
 
     if current_user.is_authenticated:
         username = current_user.username
@@ -19,16 +21,18 @@ def static_info():
         usrpostcount = Post.query.filter_by(user_id=current_user.id).count()
         usrcommentcount = Comment.query.filter_by(user_id=current_user.id).count()
 
-        return dict(syspostcount=syspostcount, syscommentcount=syscommentcount,
+        return dict(systopiccount=systopiccount, syspostcount=syspostcount, syscommentcount=syscommentcount,
                     sysusercount=sysusercount, usrpostcount=usrpostcount, usrcommentcount=usrcommentcount,
-                    username=username, useremail=useremail, date_created=date_created)
+                    username=username, useremail=useremail, date_created=date_created, now=now)
     else:
-        return dict(syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount)
+        return dict(systopiccount=systopiccount, syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount, now=now)
 
 
 @app.template_filter('humanize')
 def humanize_ts(time=False):
     now = datetime.utcnow()
+    if(time is None):
+        return 'N/A'
     diff = now - time
     second_diff = diff.seconds
     day_diff = diff.days
@@ -62,6 +66,15 @@ def replycount_ts(post_id):
     post = Post.query.get_or_404(post_id)
     replycount = Comment.query.filter_by(post_id=post.id).count()
     return replycount
+
+@app.template_filter('lastcomment')
+def lastcomment_ts(post_id):
+    post = Post.query.get_or_404(post_id)
+    try:
+        lastcomment = Comment.query.filter_by(post_id=post.id).order_by(Comment.date_posted.desc()).first().date_posted
+    except Exception as e:
+        lastcomment = None
+    return lastcomment
 
 
 if __name__ == '__main__':
