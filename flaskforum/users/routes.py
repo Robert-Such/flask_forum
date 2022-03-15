@@ -62,23 +62,30 @@ def account():
     return render_template('account.html', title='Account', form=form)
 
 
-@users.route("/user/<string:username>")
+@users.route("/user/posts/<string:username>")
 def user_posts(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
     posts = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
-    return render_template('user_posts.html', posts=posts, user=user)
+    comments = Comment.query.filter_by(author=user) \
+        .order_by(Comment.date_posted.desc()) \
+        .paginate(page=page, per_page=5)
+    return render_template('user_posts.html', posts=posts, user=user, comments=comments)
 
-@users.route("/user/<string:username>")
+
+@users.route("/user/comments/<string:username>")
 def user_comments(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
     comments = Comment.query.filter_by(author=user)\
         .order_by(Comment.date_posted.desc())\
         .paginate(page=page, per_page=5)
-    return render_template('user_comments.html', comments=comments, user=user)
+    posts = Post.query.filter_by(author=user) \
+        .order_by(Post.date_posted.desc()) \
+        .paginate(page=page, per_page=5)
+    return render_template('user_comments.html', comments=comments, user=user, posts=posts)
 
 
 @users.route("/reset_password", methods=['GET', 'POST'])

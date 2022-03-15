@@ -1,23 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1 class="mb-3">Posts by {{ user.username }} ({{ posts.total }})</h1>
+<h2 class="mb-3">{{user.username}}: ({{posts.total}}) Posts | <a class="mr-1" href="{{ url_for('users.user_comments', username=user.username) }}"> ({{comments.total}}) Comments </a></h2>
 {% for post in posts.items %}
 <article class="media content-section">
-    <svg class="avatar" src={{ post.author.image_file | safe}} </svg>
+    <div class="center">
+        <a href="/post/{{post.id}}/upvote" class="fa-solid fa-arrow-up fa-2x"> </a>
+        <div class="vote-counter">{{ post.upvote_count - post.downvote_count}}</div>
+        <a href="/post/{{post.id}}/downvote" class="fa-solid fa-arrow-down fa-2x"></a>
+    </div>
+    <svg  class="avatar" src={{ post.author.username | avatar |safe}} </svg>
+        <div>
+</div>
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{
-                post.author.username }}</a>
-            <small class="text-muted">{{ post.date_posted | humanize }}</small>
-
+            <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+            <small class="text-muted"> {{ post.date_posted | humanize }}</small>
         </div>
-        <h2 class="article-title">{{ post.title }}</h2>
+        <h4><class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</h4>
         <p class="article-content">{{ post.content }}</p>
-        <div class="article-metadata"></div>
-        <small class="text-muted">Post ID: {{ post.id}}</small>
+        <div class="article-metadata"> </div>
+        <a class="mr-1" href="{{ url_for('posts.post', post_id=post.id) }}"> Post ID: {{ post.id}}</a>
         <small class="text-muted">| {{ post.view_count}} views</small>
-        <small class="text-muted">| {{ post.id | replycount }} replies (last {{post.id | lastcomment |
-            humanize}})</small>
+        <small class="text-muted">| {{ post.id | replycount }} replies (last {{post.id | lastcomment | humanize}})</small>
         <small class="text-muted">| Topic: {{ post.topic }}</small>
     </div>
 </article>

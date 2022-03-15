@@ -2,7 +2,7 @@ from flask import (render_template, url_for, flash,
                    redirect, request, abort, Blueprint)
 from flask_login import current_user, login_required
 from flaskforum import db
-from flaskforum.models import Post, Comment
+from flaskforum.models import Post, Comment, Upvote, Downvote
 from flaskforum.posts.forms import PostForm
 
 posts = Blueprint('posts', __name__)
@@ -67,3 +67,42 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.home'))
+
+
+@posts.route("/post/<int:post_id>/upvote", methods=['GET'])
+@login_required
+def upvote(post_id):
+    post = Post.query.get_or_404(post_id)
+    upvote = Upvote.query.filter_by(post_id=post_id).first()
+    if not post:
+        flash('Post does not exist.', category='error')
+    elif upvote:
+        post.upvote_count -= 1
+        db.session.delete(upvote)
+        db.session.commit()
+    else:
+        upvote = Upvote(user_id=current_user.id, post_id=post_id)
+        post.upvote_count += 1
+        db.session.add(upvote)
+        db.session.commit()
+    return redirect(url_for('main.home'))
+
+
+@posts.route("/post/<int:post_id>/downvote", methods=['GET'])
+@login_required
+def downvote(post_id):
+    post = Post.query.get_or_404(post_id)
+    downvote = Downvote.query.filter_by(post_id=post_id).first()
+    if not post:
+        flash('Post does not exist.', category='error')
+    elif downvote:
+        post.downvote_count -= 1
+        db.session.delete(downvote)
+        db.session.commit()
+    else:
+        downvote = Downvote(user_id=current_user.id, post_id=post_id)
+        post.downvote_count += 1
+        db.session.add(downvote)
+        db.session.commit()
+    return redirect(url_for('main.home'))
+

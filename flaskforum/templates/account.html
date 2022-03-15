@@ -2,7 +2,7 @@
 {% block content %}
     <div class="content-section">
       <div class="media">
-        <svg class="avatar" src={{ current_user.image_file | safe}} </svg>
+        <svg  class="avatar" src={{ current_user.username | avatar |safe}} </svg>
         <div class="media-body">
           <h2 class="account-heading">{{ current_user.username }}</h2>
           <p class="text-secondary">{{ current_user.email }}</p>

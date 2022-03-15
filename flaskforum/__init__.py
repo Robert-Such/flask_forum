@@ -23,8 +23,6 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
 
-
-
     from flaskforum.users.routes import users
     from flaskforum.posts.routes import posts
     from flaskforum.comments.routes import comments
@@ -37,3 +35,4 @@ def create_app(config_class=Config):
     app.register_blueprint(errors)
 
     return app
+

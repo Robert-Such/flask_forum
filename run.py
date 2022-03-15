@@ -1,7 +1,8 @@
 from datetime import datetime
 from flaskforum import create_app
-from flaskforum.models import Post, Comment, User
+from flaskforum.models import Post, Comment, User, Upvote, Downvote
 from flask_login import current_user
+from flaskforum.users import defaultavatar
 
 app = create_app()
 
@@ -11,7 +12,9 @@ def static_info():
     syspostcount = Post.query.count()
     syscommentcount = Comment.query.count()
     sysusercount = User.query.count()
-    systopiccount = Post.query.with_entities(Post.topic).distinct().count()-1  # subtracting (1) for where topic=None
+    systopiccount = Post.query.with_entities(Post.topic).distinct().count()
+    sysupvotecount = Upvote.query.count()
+    sysdownvotecount = Downvote.query.count()
     now = datetime.utcnow()
 
     if current_user.is_authenticated:
@@ -20,13 +23,25 @@ def static_info():
         date_created = current_user.date_created
         usrpostcount = Post.query.filter_by(user_id=current_user.id).count()
         usrcommentcount = Comment.query.filter_by(user_id=current_user.id).count()
+        usrupvotecount = Upvote.query.filter_by(user_id=current_user.id).count()
+        usrdownvotecount = Downvote.query.filter_by(user_id=current_user.id).count()
 
-        return dict(systopiccount=systopiccount, syspostcount=syspostcount, syscommentcount=syscommentcount,
-                    sysusercount=sysusercount, usrpostcount=usrpostcount, usrcommentcount=usrcommentcount,
-                    username=username, useremail=useremail, date_created=date_created, now=now)
+        return dict(sysupvotecount=sysupvotecount, sysdownvotecount=sysdownvotecount, systopiccount=systopiccount, syspostcount=syspostcount, syscommentcount=syscommentcount,
+                    sysusercount=sysusercount, usrpostcount=usrpostcount, usrcommentcount=usrcommentcount, usrupvotecount=usrupvotecount,
+                    usrdownvotecount=usrdownvotecount, username=username, useremail=useremail, date_created=date_created, now=now)
     else:
-        return dict(systopiccount=systopiccount, syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount, now=now)
+        return dict(sysupvotecount=sysupvotecount, sysdownvotecount=sysdownvotecount, systopiccount=systopiccount, syspostcount=syspostcount, syscommentcount=syscommentcount, sysusercount=sysusercount, now=now)
 
+
+@app.template_filter('associate')
+def associate(comment_id):
+    post_id = Comment.query.filter_by(id=comment_id).first().post_id
+    return post_id
+
+@app.template_filter('avatar')
+def avatar(username):
+    result = defaultavatar.get_svg_avatar(username)
+    return result
 
 @app.template_filter('humanize')
 def humanize_ts(time=False):
