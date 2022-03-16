@@ -16,6 +16,7 @@ extensions such as:
 DASH as the visualization framework.  These visualizations provide insights
 into the activity and patterns of the user base such as userbase growth,
 post/comment volume, most active users/posts etc.
+ - The languages used to create this project are python, HTML, and CSS.
  
 App Behavior & Functionality:
   - Certain activities require account creation such as to create posts,
