@@ -51,7 +51,7 @@ def new_users(forum_start_date, user_limit):
                 print(full_name)
                 email_name = full_name.replace(" ", ".")
                 email = f'{email_name}@gmail.com'
-                pswd = 'sick'
+                pswd = 'pswd'
                 hashed_password = bcrypt.generate_password_hash(pswd).decode('utf-8')
                 date = fake.date_time_between(start_date=forum_start_date, end_date='now')
                 user = User(username=full_name, email=email, password=hashed_password, date_created=date)

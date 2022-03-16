@@ -9,7 +9,8 @@ load_dotenv(path.join(basedir, ".env"))
 
 class Config:
     SECRET_KEY = environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = environ.get('MS2_SQLALCHEMY_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = environ.get('SLF_SQLALCHEMY_DATABASE_URI')
+    SQLALCHEMY_ECHO = True
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True

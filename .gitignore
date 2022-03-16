@@ -3,3 +3,5 @@
 .idea
 .db
 /flaskforum/visualizations/temp/
+/flaskforum/site.db
+/site.db

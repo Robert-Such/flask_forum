@@ -10,7 +10,7 @@ import pandas as pd
 from .layout import html_layout
 
 
-db_uri = environ.get('MS2_SQLALCHEMY_DATABASE_URI')
+db_uri = environ.get('SLF_SQLALCHEMY_DATABASE_URI')
 engine = create_engine(db_uri)
 
 
@@ -22,14 +22,17 @@ def init_dashboard(server):
 
     dash_app.index_string = html_layout
 
+
     #Posts = pd.read_sql('select * from [user] join post on [user].id = post.user_id', con=engine)
     #Comments = pd.read_sql('select * from [user] join comment on [user].id = comment.user_id', con=engine)
+
 
     Users = pd.read_sql('user', con=engine)
     Posts = pd.read_sql('post', con=engine)
     Comments = pd.read_sql('comment', con=engine)
     Upvotes = pd.read_sql('upvote', con=engine)
     Downvotes = pd.read_sql('downvote', con=engine)
+
 
     user_volume = px.histogram(
         Users,
