@@ -16,17 +16,17 @@ extensions such as:
 DASH as the visualization framework.  These visualizations provide insights
 into the activity and patterns of the user base such as userbase growth,
 post/comment volume, most active users/posts etc.
- - Avatars are automatically generated for each user through the use of
-avinit, albeit with some modifications (https://github.com/CraveFood/avinit).
-
+ 
 App Behavior & Functionality:
   - Certain activities require account creation such as to create posts,
 comments, and upvote/down vote.  Additionally, posts and comments can only
 be edited or deleted by the originator.
   - Views for each individual post are tracked and incremented for any user
 regardless of whether they actually have an account.
-  - Avatars for each user is automatically generated as an svg with the initials
-of the associated username.  A random color is also assigned to this avatar.
+  - Avatars are automatically generated for each user through the use of
+avinit, albeit with some modifications (https://github.com/CraveFood/avinit).
+These avatars are generated as an svg using the initials of the associated
+username.  A random color is also assigned to this avatar.
   - Post and comment history can be viewed by any user (registered or not).
   - A sidebar is shown on each page with stats like post count / comment count.
 These stats are displayed in reference to both the individual user level and
