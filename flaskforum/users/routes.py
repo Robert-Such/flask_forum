@@ -6,6 +6,7 @@ from flaskforum.users.forms import (RegistrationForm, LoginForm, UpdateAccountFo
                                     RequestResetForm, ResetPasswordForm)
 from flaskforum.users.utils import send_reset_email
 
+
 users = Blueprint('users', __name__)
 
 
