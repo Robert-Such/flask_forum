@@ -2,6 +2,7 @@
 /venv/
 .idea
 .db
-/flaskforum/visualizations/temp/
-/flaskforum/site.db
+/dashapp/temp/
+/app/site.db
 /site.db
+/dashapp/temp/

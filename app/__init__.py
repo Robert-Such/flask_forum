@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from flaskforum.config import Config
+from app.config import Config
 
 
 db = SQLAlchemy()
@@ -23,22 +23,29 @@ def create_app(config_class=Config):
     mail.init_app(app)
 
     with app.app_context():
-        from flaskforum.users.routes import users
-        from flaskforum.posts.routes import posts
-        from flaskforum.comments.routes import comments
-        from flaskforum.main.routes import main
-        from flaskforum.errors.handlers import errors
-        from flaskforum.visualizations.routes import visualizations
+        from app.users.routes import users
+        from app.posts.routes import posts
+        from app.comments.routes import comments
+        from app.main.routes import main
+        from app.errors.handlers import errors
 
-        from flaskforum.visualizations.dash import init_dashboard
-        app = init_dashboard(app)
+
+        from dashapp.dashboard_1 import dashboard_1
+        app = dashboard_1(app)
+
+        from dashapp.dashboard_2 import dashboard_2
+        app = dashboard_2(app)
+
+        from dashapp.dashboard_3 import dashboard_3
+        app = dashboard_3(app)
 
         app.register_blueprint(users)
         app.register_blueprint(posts)
         app.register_blueprint(comments)
         app.register_blueprint(main)
         app.register_blueprint(errors)
-        app.register_blueprint(visualizations)
+
+
 
         return app
 

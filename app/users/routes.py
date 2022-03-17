@@ -1,10 +1,10 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
-from flaskforum import db, bcrypt
-from flaskforum.models import User, Post, Comment
-from flaskforum.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
-                                    RequestResetForm, ResetPasswordForm)
-from flaskforum.users.utils import send_reset_email
+from app import db, bcrypt
+from app.models import User, Post, Comment
+from app.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
+                             RequestResetForm, ResetPasswordForm)
+from app.users.utils import send_reset_email
 
 
 users = Blueprint('users', __name__)

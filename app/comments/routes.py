@@ -1,9 +1,9 @@
 from flask import (render_template, url_for, flash,
                    redirect, abort, request, Blueprint)
 from flask_login import current_user, login_required
-from flaskforum import db
-from flaskforum.models import Comment, Post, Upvote, Downvote
-from flaskforum.comments.forms import CommentForm
+from app import db
+from app.models import Comment, Post, Upvote, Downvote
+from app.comments.forms import CommentForm
 
 comments = Blueprint('comments', __name__)
 

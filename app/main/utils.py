@@ -1,7 +1,7 @@
-from flaskforum import bcrypt
-from flaskforum.models import User, Post, Comment, Upvote, Downvote
+from app import bcrypt
+from app.models import User, Post, Comment, Upvote, Downvote
 import names, random, random_topic
-from flaskforum import create_app, db
+from app import create_app, db
 from quote import quote
 import html5lib, requests, bs4
 from tenacity import *

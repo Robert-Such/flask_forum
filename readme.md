@@ -77,22 +77,22 @@ etc.  SQLAlchemy supports SQLite, Postgresql, MySQL, Oracle, MS-SQL, Firebird, S
 and others.
 
 Home Page:
-![](flaskforum/static/screenshots/home_page.png)
+![](app/static/screenshots/home_page.png)
 
 Post Detail:
-![](flaskforum/static/screenshots/post_detail.png)
+![](app/static/screenshots/post_detail.png)
 
 User History:
-![](flaskforum/static/screenshots/user_history.png)
+![](app/static/screenshots/user_history.png)
 
 Auto Populate:
-![](flaskforum/static/screenshots/auto_populate.png)
+![](app/static/screenshots/auto_populate.png)
 
 Dashboard 1:
-![](flaskforum/static/screenshots/dasboard_1.png)
+![](app/static/screenshots/dasboard_1.png)
 
 Dashboard 2:
-![](flaskforum/static/screenshots/dashboard_2.png)
+![](app/static/screenshots/dashboard_2.png)
 
 References:
  - The core reference used to start this project is Corey Schafer's excellent Flask

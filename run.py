@@ -1,8 +1,8 @@
 from datetime import datetime
-from flaskforum import create_app
-from flaskforum.models import Post, Comment, User, Upvote, Downvote
+from app import create_app
+from app.models import Post, Comment, User, Upvote, Downvote
 from flask_login import current_user
-from flaskforum.users import defaultavatar
+from app.users import defaultavatar
 
 app = create_app()
 

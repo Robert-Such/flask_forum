@@ -1,7 +1,7 @@
 from flask import render_template, request, Blueprint, flash
-from flaskforum.models import Post, db
-from flaskforum.main.forms import AutoPopulateForm, ResetForm
-from flaskforum.main.utils import new_users, new_posts, new_comments, new_upvotes, new_downvotes
+from app.models import Post, db
+from app.main.forms import AutoPopulateForm, ResetForm
+from app.main.utils import new_users, new_posts, new_comments, new_upvotes, new_downvotes
 
 main = Blueprint('main', __name__)
 
