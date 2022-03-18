@@ -94,6 +94,12 @@ Dashboard 1:
 Dashboard 2:
 ![](app/static/screenshots/dashboard_2.png)
 
+Dashboard 3:
+![](app/static/screenshots/dashboard_3.png)
+
+Dashboard 4:
+![](app/static/screenshots/dashboard_4.png)
+
 References:
  - The core reference used to start this project is Corey Schafer's excellent Flask
 Series on youtube.  I highly recommend watching his videos in order to get familiar
