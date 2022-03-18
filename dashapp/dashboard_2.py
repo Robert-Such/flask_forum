@@ -8,6 +8,9 @@ from .layout import html_layout
 
 posts = db.session.query(Post, User).join(User)
 posts_df = pd.read_sql(posts.statement, posts.session.bind)
+posts_df.sort_values(by=['view_count'], ascending=True, inplace=True)
+posts_df = posts_df.tail(10)
+
 
 def dashboard_2(server):
     app = dash.Dash(
@@ -20,21 +23,24 @@ def dashboard_2(server):
 
     app.index_string = html_layout
 
-    post_volume = px.histogram(
+    fig = px.bar(
         posts_df,
-        title="Post Volume Over Time",
-        x="date_posted",
-        text_auto=True,
-        height=400,
-        color="username"
+        title="Top Ten Most Viewed Posts",
+        orientation='h',
+        y="title",
+        x='view_count',
+        #text_auto=True,
+        text="Username: " + posts_df["username"].astype(str) + "<br>View Count: " + posts_df["view_count"].astype(str),
+        height=800,
+        #color="username"
     )
 
-    post_volume.update_layout(bargap=0.2)
+    fig.update_layout(bargap=0.2)
 
     app.layout = html.Div(children=[
         # All elements from the top of the page
         html.Div([
-            dcc.Graph(id='graph1', figure=post_volume, className="media content-section"),
+            dcc.Graph(id='graph1', figure=fig, className="media content-section"),
 
 
         ])])

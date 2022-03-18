@@ -33,7 +33,7 @@ def dashboard_3(server):
                      )
 
     cpu = px.treemap(comments_per_user,
-                     title='Post Volume Per User',
+                     title='Comment Volume Per User',
                      path=[px.Constant("user Base"), comments_per_user.index],
                      values='username',
                      color='username'
