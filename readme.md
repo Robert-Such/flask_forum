@@ -15,7 +15,9 @@ extensions such as:
  - Dashboard Visualizations have also been made available through the use of
 DASH as the visualization framework.  These visualizations provide insights
 into the activity and patterns of the user base such as userbase growth,
-post/comment volume, most active users/posts etc.
+post/comment volume, most active users/posts etc.  One dashboard also displays
+the current database schema through an entity relationship diagram.  This
+information is pulled directly from the sqlalchemy database metadata.
  - The languages used to create this project are python, HTML, and CSS.
  
 App Behavior & Functionality:
@@ -88,8 +90,11 @@ User History:
 Auto Populate:
 ![](app/static/screenshots/auto_populate.png)
 
-Dashboard 1:
-![](app/static/screenshots/dasboard_1.png)
+Dashboard 1A:
+![](app/static/screenshots/dasboard_1A.png)
+
+Dashboard 1B:
+![](app/static/screenshots/dashboard_1B.png)
 
 Dashboard 2:
 ![](app/static/screenshots/dashboard_2.png)

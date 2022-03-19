@@ -36,6 +36,7 @@ html_layout = """
                     <a class="nav-item nav-link" href="/dashboard_1">Dashboard-1</a>
                     <a class="nav-item nav-link" href="/dashboard_2">Dashboard-2</a>
                     <a class="nav-item nav-link" href="/dashboard_3">Dashboard-3</a>
+                    <a class="nav-item nav-link" href="/dashboard_4">Dashboard-4</a>
                 </div>
                 </div>
             </div>

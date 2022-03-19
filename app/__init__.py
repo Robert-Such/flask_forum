@@ -29,7 +29,6 @@ def create_app(config_class=Config):
         from app.main.routes import main
         from app.errors.handlers import errors
 
-
         from dashapp.dashboard_1 import dashboard_1
         app = dashboard_1(app)
 
@@ -39,13 +38,14 @@ def create_app(config_class=Config):
         from dashapp.dashboard_3 import dashboard_3
         app = dashboard_3(app)
 
+        from dashapp.dashboard_4 import dashboard_4
+        app = dashboard_4(app)
+
         app.register_blueprint(users)
         app.register_blueprint(posts)
         app.register_blueprint(comments)
         app.register_blueprint(main)
         app.register_blueprint(errors)
-
-
 
         return app
 

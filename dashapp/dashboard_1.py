@@ -76,7 +76,6 @@ def dashboard_1(server):
     downvote_volume.update_traces(marker=dict(color='red'), textfont_color='#000000')
 
     dash_app.layout = html.Div(children=[
-        # All elements from the top of the page
         html.Div([
             dcc.Graph(id='graph1', figure=user_volume, className="media content-section"),
             dcc.Graph(id='graph2', figure=post_volume, className="media content-section"),
