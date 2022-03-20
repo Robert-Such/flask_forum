@@ -4,20 +4,30 @@ people are able to create posts and comments while being able to upvote
 and down vote accordingly.
 
 Tech Summary:
- - The core of this project uses Flask as the web application framework
-while SQLAlchemy is used as the abstraction layer in communications between
-Flask and the Database.
+ - The core of this project uses Flask as the web application framework.
+Overall this is essentially a Flask app that is being paired with a Plotly
+Dash app. The main Flask app serves the routes for forum functions such as
+posting, commenting, voting etc. whereas the Dash app has been added to serve
+routes specific to dashboard visualizations.
+ - The dashboard visualizations provide insights into the activity and patterns
+of the user base such as userbase growth, post/comment volume, most active
+users/posts etc.  One dashboard also displays the current database schema through
+an entity relationship diagram.
+ - Both the main Flask app and the Dash app communicate with the database
+through SQLAlchemy which acts as a layer of abstraction between the apps
+and an associated SQL database. Due to the versatility of SQLALCHEMY, many SQL
+database variants can be used with this app (and later substituted) without having
+to worry about syntax specific changes. SQLAlchemy supports SQLite, Postgresql,
+MySQL, Oracle, MS-SQL, Firebird, Sybase and others.
+ - A directory called 'reference' contains a SQL file and jupyter notebook with
+reference queries for ad hoc analysis of the database contents.  The SQL file is
+used to query the database directly while the jupyter notebook uses SQLAlchemy and
+the inherited context of the Flask app to query the database.
  - Additional capabilities have been granted to Flask through the use of
 extensions such as:
    - Password hashing functionality through Flask-Bcrypt.
    - User session management (logging in and out etc.) through Flask-Login.
    - Form management and validation through WTForms.
- - Dashboard Visualizations have also been made available through the use of
-DASH as the visualization framework.  These visualizations provide insights
-into the activity and patterns of the user base such as userbase growth,
-post/comment volume, most active users/posts etc.  One dashboard also displays
-the current database schema through an entity relationship diagram.  This
-information is pulled directly from the sqlalchemy database metadata.
  - The languages used to create this project are python, HTML, and CSS.
  
 App Behavior & Functionality:
@@ -73,10 +83,7 @@ flask_forum/flaskforum/.env:
    - SQLALCHEMY_DATABASE_URI =
    - FLASK_ENV=
  - SQLALCHEMY will know where to generate the DB tables once the Database URI is
-set.  Due to the versatility of SQLALCHEMY many database variants can be used with
-this app without having to worry about any syntax specific changes for SQL statements
-etc.  SQLAlchemy supports SQLite, Postgresql, MySQL, Oracle, MS-SQL, Firebird, Sybase
-and others.
+set.  
 
 Home Page:
 ![](app/static/screenshots/home_page.png)
