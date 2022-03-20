@@ -47,14 +47,21 @@ def dashboard_2(server):
             orientation='h',
             y="title",
             x='view_count',
-            # text_auto=True,
-            text="Username: " + posts_df["username"].astype(str) + "<br>View Count: " + posts_df["view_count"].astype(
-                str),
+            text_auto=True,
             height=750,
-            # color="username"
+            color="username"
         )
 
-        fig.update_layout(bargap=0.2)
+        fig.update_traces(textfont_size=15,
+                          textangle=0,
+                          textposition="outside",
+                          cliponaxis=False)
+        fig.update_layout(bargap=0.2,
+                          yaxis=dict(tickfont=dict(size=15)),
+                          xaxis=dict(tickfont=dict(size=15)),
+                          legend=dict(font=dict(size=15)),
+                          legend_title=dict(font=dict(size=15)))
+        fig.update_yaxes(categoryorder='total ascending')
 
         return fig
 
