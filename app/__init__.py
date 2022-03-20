@@ -31,15 +31,13 @@ def create_app(config_class=Config):
 
         from dashapp.dashboard_1 import dashboard_1
         app = dashboard_1(app)
-
         from dashapp.dashboard_2 import dashboard_2
         app = dashboard_2(app)
-
         from dashapp.dashboard_3 import dashboard_3
         app = dashboard_3(app)
-
         from dashapp.dashboard_4 import dashboard_4
         app = dashboard_4(app)
+
 
         app.register_blueprint(users)
         app.register_blueprint(posts)

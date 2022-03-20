@@ -2,7 +2,7 @@
 /venv/
 .idea
 .db
-/dashapp/temp/
+/reference/temp/
 /app/site.db
 /site.db
-/dashapp/temp/
+/reference/temp/
