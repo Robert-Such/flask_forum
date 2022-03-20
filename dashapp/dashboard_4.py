@@ -81,10 +81,10 @@ def dashboard_4(server):
     )
     def update_figure(datatype, indexes, direction, concentrate):
         graph = create_schema_graph(metadata=db.metadata,
-                                    show_datatypes=datatype,  # The image would get nasty big if we'd show the datatypes
-                                    show_indexes=indexes,  # ditto for indexes
-                                    rankdir=direction,  # From left to right (instead of top to bottom)
-                                    concentrate=concentrate  # Don't try to join the relation lines together
+                                    show_datatypes=datatype,  # True or False
+                                    show_indexes=indexes,  # True or False
+                                    rankdir=direction,  # 'LR', 'RL', 'TB', 'BT'
+                                    concentrate=concentrate  # True or False
                                     )
         dot_source = graph.to_string()
         return dot_source
