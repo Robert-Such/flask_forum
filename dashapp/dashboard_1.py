@@ -36,8 +36,17 @@ def dashboard_1(server):
                 x="date_created",
                 text_auto=True,
                 height=height,
+                color='username'
             )
-            fig.update_layout(bargap=0.2)
+            fig.update_traces(textfont_size=15,
+                              textangle=0,
+                              textposition="none",
+                              cliponaxis=False)
+            fig.update_layout(bargap=0.2,
+                              yaxis=dict(tickfont=dict(size=15)),
+                              xaxis=dict(tickfont=dict(size=15)),
+                              legend=dict(font=dict(size=15)),
+                              legend_title=dict(font=dict(size=15)))
             return fig
 
         if type_selection == 'Posts':
