@@ -9,10 +9,10 @@ Overall this is essentially a Flask app that is being paired with a Plotly
 Dash app. The main Flask app serves the routes for forum functions such as
 posting, commenting, voting etc. whereas the Dash app has been added to serve
 routes specific to dashboard visualizations.
- - The dashboard visualizations provide insights into the activity and patterns
-of the user base such as userbase growth, post/comment volume, most active
-users/posts etc.  One dashboard also displays the current database schema through
-an entity relationship diagram.
+ - The dashboard visualizations are interactive and provide insights into the
+activity and patterns of the user base such as userbase growth, post/comment
+volume, most active users/posts etc.  One dashboard also displays the current
+database schema through an entity relationship diagram.
  - Both the main Flask app and the Dash app communicate with the database
 through SQLAlchemy which acts as a layer of abstraction between the apps
 and an associated SQL database. Due to the versatility of SQLALCHEMY, many SQL

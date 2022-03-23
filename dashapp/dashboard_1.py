@@ -5,6 +5,7 @@ import pandas as pd
 from .layout import html_layout
 
 
+
 def dashboard_1(server):
     app = dash.Dash(
         server=server,

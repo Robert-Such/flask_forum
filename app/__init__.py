@@ -22,12 +22,16 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
 
+
+
     with app.app_context():
         from app.users.routes import users
         from app.posts.routes import posts
         from app.comments.routes import comments
         from app.main.routes import main
         from app.errors.handlers import errors
+
+        db.create_all()
 
         from dashapp.dashboard_1 import dashboard_1
         app = dashboard_1(app)
